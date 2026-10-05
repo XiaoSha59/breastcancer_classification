@@ -1,7 +1,8 @@
-﻿.venv/
+.venv/
 venv/
 data/
 weights/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+ROADMAP.md
