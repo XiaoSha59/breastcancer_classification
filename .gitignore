@@ -1,8 +1,29 @@
+# Virtual Environment
 .venv/
 venv/
-data/
-weights/
+
+# Python Cache
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+
+# Ignore heavy dataset images but keep folder structure and mapping CSV
+data/*
+!data/.gitkeep
+!data/mapping_curated_BUSI.csv
+!data/benign/
+!data/malignant/
+!data/normal/
+data/benign/*
+!data/benign/.gitkeep
+data/malignant/*
+!data/malignant/.gitkeep
+data/normal/*
+!data/normal/.gitkeep
+
+# Ignore trained model weights and curves but keep directory structure
+weights/*
+!weights/.gitkeep
+
+# Local docs
 ROADMAP.md
