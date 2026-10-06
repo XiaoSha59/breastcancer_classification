@@ -13,13 +13,13 @@ This repository provides an automated Deep Learning framework for Breast Ultraso
 
 All experiments are evaluated on the standardized **Curated BUSI** test split (70% Train, 15% Validation, 15% Test, N=71):
 
-| Method / Model | Learning Paradigm | Classification Accuracy | Tumor Segmentation (Dice) | Tumor Segmentation (IoU) | Epochs / Latency | Description |
-| :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| **ResNet18 (Ours)** | Task 1: Single-Task Classification | **87.32%** | — | — | 15 ep / ~12 ms | High classification accuracy; cannot localize tumor regions |
-| **ResNet18-UNet (Ours)** | Task 2: Single-Task Segmentation | — | **72.10%** | **43.68%** | 15 ep / ~24 ms | Accurate tumor boundary delineation; cannot predict pathology |
-| **MultiTask ResNet18-UNet (Ours)** | Task 3: Joint Multi-Task (Cls + Seg) | **83.10%** | **73.40%** | **46.08%** | 15 ep / **~26 ms** | Unified framework; simultaneously localizes tumor and predicts pathology; segmentation IoU improved by +2.4% |
-| *Zhang et al. (2023)* | Segmentation Baseline | — | *75.40%* | *~48.00%* | 100 ep / ~35 ms | U-Net baseline on BUSI dataset |
-| *Aumente-Maestro et al. (2025)* | Multi-Task SOTA Baseline | *89.80%* | *74.80% – 78.20%* | *~48.50%* | 100 ep / ~80 ms | Multi-Task DenseNet121 / ResNet50 baseline |
+| Method / Model | Learning Paradigm | Classification Accuracy | Tumor Segmentation (Dice) | Tumor Segmentation (IoU) | Epochs / Latency |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **ResNet18 (Ours)** | Task 1: Single-Task Classification | **87.32%** | — | — | 15 ep / ~12 ms |
+| **ResNet18-UNet (Ours)** | Task 2: Single-Task Segmentation | — | **72.10%** | **43.68%** | 15 ep / ~24 ms |
+| **MultiTask ResNet18-UNet (Ours)** | Task 3: Joint Multi-Task (Cls + Seg) | **83.10%** | **73.40%** | **46.08%** | 15 ep / **~26 ms** |
+| *Zhang et al. (2023)* | Segmentation Baseline | — | *75.40%* | *~48.00%* | 100 ep / ~35 ms |
+| *Aumente-Maestro et al. (2025)* | Multi-Task SOTA Baseline | *89.80%* | *74.80% – 78.20%* | *~48.50%* | 100 ep / ~80 ms |
 
 *Note: Segmentation Dice and IoU metrics are evaluated on pathological lesion-bearing cases (Benign and Malignant) according to medical imaging reporting standards.*
 
@@ -97,29 +97,29 @@ python task3_multitask/train.py
 
 ```text
 breastcancer_classification/
-├── data/                         # Curated BUSI dataset (450 images)
+├── data/
 │   ├── benign/
 │   ├── malignant/
 │   ├── normal/
-│   └── mapping_curated_BUSI.csv  # Metadata and duplicate tracking mapping
-├── weights/                      # Trained model checkpoints (.pth)
-├── src/                          # Shared core modules
-│   ├── losses.py                 # Centralized Dice, BCEDice, and MultiTask losses
-│   └── preprocess.py             # Data curation and deduplication pipeline
-├── task1_classification/         # Paradigm 1: Single-Task Classification
-│   ├── dataset.py                # Stratified 70/15/15 classification DataLoader
-│   ├── model.py                  # ResNet18 classification architecture
-│   └── train.py                  # Task 1 training pipeline
-├── task2_segmentation/           # Paradigm 2: Single-Task Tumor Segmentation
-│   ├── dataset.py                # Segmentation DataLoader
-│   ├── model.py                  # ResNet18-UNet segmentation architecture
-│   └── train.py                  # Task 2 training pipeline
-├── task3_multitask/              # Paradigm 3: Joint Multi-Task Learning
-│   ├── dataset.py                # Dual-target (Image, Mask, Label) DataLoader
-│   ├── model.py                  # MultiTask ResNet18-UNet dual-head architecture
-│   └── train.py                  # Task 3 training pipeline
-├── requirements.txt              # Project dependencies
-└── README.md                     # Project documentation
+│   └── mapping_curated_BUSI.csv
+├── weights/
+├── src/
+│   ├── losses.py
+│   └── preprocess.py
+├── task1_classification/
+│   ├── dataset.py
+│   ├── model.py
+│   └── train.py
+├── task2_segmentation/
+│   ├── dataset.py
+│   ├── model.py
+│   └── train.py
+├── task3_multitask/
+│   ├── dataset.py
+│   ├── model.py
+│   └── train.py
+├── requirements.txt
+└── README.md
 ```
 
 ---
