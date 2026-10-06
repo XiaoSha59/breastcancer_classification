@@ -27,3 +27,12 @@ weights/*
 
 # Local docs
 ROADMAP.md
+25C01028_report.pdf
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+
+# Report directory
+report/
